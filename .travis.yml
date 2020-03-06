@@ -1,0 +1,22 @@
+language: python
+python:
+    - "3.6.5"
+addons:
+  postgresql: "9.6"
+
+services:
+    - postgres
+
+# require travis to first install dependencies
+install:
+    - pip install pipenv
+    - pipenv install --dev
+
+before-script:
+    - psql -c "DROP DATABASE IF EXISTS bpochattestdb;" -U postgres
+    - psql -c "CREATE DATABASE bpochattestdb;" -U postgres
+    - python manage.py makemigrations
+    - python manage.py migrate
+
+script:
+    - python manage.py test
