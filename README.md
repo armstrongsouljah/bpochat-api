@@ -1,6 +1,8 @@
 # bpochat-api
 A chat application to enable users interact with one another. 
 
+[![Build Status](https://travis-ci.com/armstrongsouljah/bpochat-api.svg?branch=staging)](https://travis-ci.com/armstrongsouljah/bpochat-api)
+
 #### Project requirements
 - Python 3.7>
 - Django 2.x >
@@ -15,3 +17,15 @@ A chat application to enable users interact with one another.
 - Install the project dependencies `pipenv install`
 - Create a postgresql database and add a `DATABASE_URL` key value pair in a `.env` file on your local machine. 
 - Run the project `python manage.py runserver`
+
+
+#### Usage
+- signup spec:
+{
+    
+    "user": {
+        "username": string,
+        "email":  string,
+        "password": string
+    }
+}
