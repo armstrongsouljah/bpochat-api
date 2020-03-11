@@ -108,7 +108,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_shortname(self):
         return self.username
 
-    @property
     def is_active(self):
         return self.is_active
 

@@ -34,13 +34,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
     def validate_email(self, email):
         """ This function validates the email input by a new user signing up
             It ensures that the email being used for signing up was not already used by another user.
-        Args: 
-            email(str): This is the email string received from user
-        Returns: 
-            Returns the validated email
-        Raises: 
-            ValidationError: 
-            - "Email already exists." : for an already existing email
         """
 
         check_email = User.objects.filter(email=email)
@@ -91,31 +84,7 @@ class LoginSerializer(serializers.Serializer):
         return {
             'email': user.email,
             'username': user.username,
-            'token': user.token,
-            'message': 'Account created successfully'
-        }
-
-class PasswordResetRequestSerializer(serializers.Serializer):
-    email = serializers.EmailField(max_length=255, required=True)
-
-    def validate(self,data):
-        
-        email = data.get('email',None)
-
-        if email is None:
-            raise serializers.ValidationError("Email is required")
-        
-        return {
-            'email': email
-        }
-
-class PasswordResetSerializer(serializers.Serializer):
-     password = serializers.CharField(max_length=128, required=True)
-
-     def validate(self,data):
-        new_password = data.get('password',None)
-        return {
-            'password': validate_password(new_password)
+            'token': user.token
         }
 
 class UserSerializer(serializers.ModelSerializer):
