@@ -15,4 +15,20 @@ class BaseTest(TestCase):
                 "password": "JakeJake12"
             }
         }
-
+        self.valid_user = User.objects.create_user(
+            username ='armstrongtest',
+            email='armstrongtest@server.com',
+            password='#Pho3nix9q'
+        )
+        self.valid_user_login = {
+            "user":{
+                "email":"armstrongtest@server.com",
+                "password":"#Pho3nix9q"
+            }
+        }
+        self.invalid_user_login = {
+            "user":{
+                "email":"armstrongtest@server",
+                "password":"#Pho3nix9q"
+            }
+        }

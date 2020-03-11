@@ -10,7 +10,7 @@ class TestUserModel(BaseTest):
             self.user_data['user']['username'],
             self.user_data['user']['email'],
             self.user_data['user']['password'])
-        self.assertEqual(1, User.objects.count())
+        self.assertEqual(2, User.objects.count())
 
     def test_create_staff_user(self):
         user = User.objects.create_staffuser(
@@ -93,3 +93,16 @@ class TestViews(BaseTest):
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_login_with_valid_data_succeeds(self):
+        response = self.client.post(f'{self.baseUrl}/auth/login',
+               content_type='application/json',
+               data=json.dumps(self.valid_user_login))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_login_with_invalid_data_fails(self):
+        response = self.client.post(
+            f"{self.baseUrl}/auth/login",
+            content_type="application/json",
+            data=json.dumps(self.invalid_user_login)
+        )
+        

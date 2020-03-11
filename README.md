@@ -20,7 +20,8 @@ A chat application to enable users interact with one another.
 
 
 #### Usage
-- signup spec:
+#### user signup spec:
+`localhost:8000/auth/signup`
 {
     
     "user": {
@@ -29,3 +30,15 @@ A chat application to enable users interact with one another.
         "password": string
     }
 }
+
+#### user login spec
+
+`localhost:8000/auth/login`
+
+{
+    "user": {
+        "email":"your-email",
+        "password:"your-password"
+    }
+}
+
