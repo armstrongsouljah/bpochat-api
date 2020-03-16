@@ -5,5 +5,5 @@ from .views import (
 app_name = 'chat'
 
 urlpatterns = [
-    path('<username>/dm', DirectMessageView.as_view() )
+    path('<username>', DirectMessageView.as_view() )
 ]
