@@ -7,7 +7,7 @@ User  = get_user_model()
 class ChatRoom(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
-    members = models.ManyToManyField(User, related_name='members')
+    members = models.ManyToManyField(User, related_name='members', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
