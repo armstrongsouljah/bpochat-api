@@ -15,16 +15,6 @@ class ChatterboxConsumer(AsyncConsumer):
         })
 
     async def websocket_receive(self, event):
-        # data_json = json.dumps(event)
-        # print(data_json)
-        # id1 = await self.get_user_one(username=event.get("sender"))
-        # id2 = await self.get_user_two(username=event.get("receiver"))
-        # # await Thread.objects.get_or_create(first_user=id1, second_user=id2)
-        # chat_room = f"chat_{self.scope['url_route']['kwargs']['username']}"
-        # self.chat_room = chat_room
-        # await self.channel_layer.group_add(
-        #     chat_room, self.channel_name
-        # )
         front_text  = event.get('text')
         cleaned_data = json.loads(front_text)
         id1 = await self.get_user_one(username=cleaned_data.get("sender"))
