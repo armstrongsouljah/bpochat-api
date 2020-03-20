@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'authentication'
+    'channels',
+    'authentication',
+    'chatterbox'
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,16 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://127.0.0.1:9000"
 ]
+
+# Channels integration
+ASGI_APPLICATION = "bpoapi.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'ROUTING': 'bpoapi.routing.application',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', '6379')],
+        }
+    }
+}
