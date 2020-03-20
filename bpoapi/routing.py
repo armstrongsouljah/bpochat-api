@@ -4,11 +4,14 @@ from django.urls import path
 from chat.consumers import (
     ChatMessageConsumer,
 )
+from chatterbox.consumers import ChatterboxConsumer
+
 
 application = ProtocolTypeRouter({
     'websocket': AuthMiddlewareStack(
         URLRouter([
-            path('messages/<username>', ChatMessageConsumer)
+         path('<username>/chat', ChatMessageConsumer),
+         path('messages/<username>/send', ChatterboxConsumer)
         ])
     )
 })

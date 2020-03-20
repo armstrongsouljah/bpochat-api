@@ -93,3 +93,16 @@ class GroupLeaveView(g.UpdateAPIView):
 
         
         
+class MessageThreadView(g.ListAPIView):
+    serializer_class=IndividualChatSerializer
+    permission_classes = (IsAuthenticated, )
+    
+    def get_queryset(self):
+        receiver = self.kwargs.get('username')
+        sender = self.request.user.username
+        print('sender ', self.request.user.username)
+        print('receiver', receiver)
+        user_id_1 = User.objects.get(username=sender).pk
+        user_id_2 = User.objects.get(username=receiver).pk
+        qs = IndividualChat.objects.filter(sender=user_id_1, to=user_id_2)
+        return qs

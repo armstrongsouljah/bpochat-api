@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'channels',
     'authentication',
-    'chat'
+    'chat',
+    'chatterbox'
 ]
 
 MIDDLEWARE = [
@@ -151,8 +152,12 @@ CORS_ORIGIN_WHITELIST = [
 # Channels integration
 ASGI_APPLICATION = "bpoapi.routing.application"
 
-CHANNEL_LAYERAS = {
+CHANNEL_LAYERS = {
     'default': {
-        'ROUTING': 'bpoapi.routing.application'
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'ROUTING': 'bpoapi.routing.application',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', '6379')],
+        }
     }
 }

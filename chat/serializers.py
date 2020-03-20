@@ -24,3 +24,5 @@ class IndividualChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = IndividualChat
         fields = '__all__'
+
+

@@ -28,6 +28,11 @@ class ChatMessage(models.Model):
         ordering = ['-sent_at']
 
 
+class IndividualChatManager(models.Manager):
+    def get_thread(self, user):
+        pass
+
+
 class IndividualChat(models.Model):
     to = models.ForeignKey(User, on_delete=models.CASCADE)
     sender = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE)
@@ -36,4 +41,7 @@ class IndividualChat(models.Model):
 
     def __str__(self):
         return f"new message from {self.sender}"
+
+    class Meta:
+        ordering = ['-sent_at']
 
