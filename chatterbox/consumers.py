@@ -23,7 +23,8 @@ class ChatterboxConsumer(AsyncConsumer):
         thread =await self.get_thread(id1,id2)
         print(thread[0])
 
-        chat_room = f"chat_{thread[0].pk}"
+        # chat_room = f"chat_{thread[0].pk}"
+        chat_room = "chat_group"
         print(chat_room)
         self.chat_room = chat_room
         await self.channel_layer.group_add(
